@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .public-container {
+      @apply container mx-auto px-4 md:px-2 lg:px-5 2xl:px-6;
+    }
+    .public-g-padding {
+      @apply lg:p-5 md:p-4 !p-3;
+    }
+    .public-gap {
+      @apply gap-3 md:gap-5 lg:gap-6;
+    }
+    .public-card {
+      @apply shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(48,46,56,0.06)_0px_3px_10px_0px] bg-white rounded-lg md:rounded-[10px] p-3 md:p-5;
+    }
+    .public-title {
+      @apply text-base text-text-primary !capitalize !font-medium;
+    }
+    .public-large-title {
+      @apply text-xl lg:text-2xl text-text-primary !capitalize font-semibold;
+    }
+    .delay-animation {
+      @apply !transition-all !ease-in-out !duration-500;
+    }
+    .btn-danger {
+      @apply bg-primary/80 hover:bg-primary text-white  shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)];
+    }
+    .btn-primary {
+      @apply bg-primary-blue/80 hover:bg-primary-blue text-white  shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)];
+    }
+  }
