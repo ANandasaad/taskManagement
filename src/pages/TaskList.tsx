@@ -32,7 +32,9 @@ const TaskList = () => {
   const handleDelete = async (id: string) => {
     console.log(id);
     await axios
-      .delete("http://localhost:8080/api/v1/task/delete-task/" + id)
+      .delete(
+        "https://backendapitask.onrender.com/api/v1/task/delete-task/" + id
+      )
       .then((res) => {
         console.log(res.data);
         location.reload();
