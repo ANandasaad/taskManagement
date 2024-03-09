@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TaskModal from "../compontents/TaskEdit";
 import useTask from "../hooks/useTask";
 import { useSelector } from "react-redux";
