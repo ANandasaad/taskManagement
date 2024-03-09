@@ -19,7 +19,7 @@ const NavBar = () => {
               Task Home
             </li>
           </Link>{" "}
-          <Link to="/main/task">
+          <Link to="/task">
             {" "}
             <li className="py-2 flex items-center justify-start gap-2 text-xl hover:bg-gray-100 px-2 rounded-lg">
               {" "}

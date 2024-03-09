@@ -2,19 +2,20 @@ import "./App.css";
 import Home from "./compontents/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TaskList from "./pages/TaskList";
-import Main from "./compontents/Main";
+
+import TaskBoard from "./pages/TaskBoard";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-  },
-  {
-    path: "/main",
-    element: <Main />,
     children: [
       {
-        path: "task",
+        path: "",
+        element: <TaskBoard />,
+      },
+      {
+        path: "/task",
         element: <TaskList />,
       },
     ],
