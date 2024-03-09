@@ -33,8 +33,8 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
           dueDate: task.dueDate,
         }
       );
-      console.log(response.data);
-      dispatch(addTask(response.data));
+
+      dispatch(addTask(response?.data));
       onState(false);
       location.reload();
     } catch (error) {

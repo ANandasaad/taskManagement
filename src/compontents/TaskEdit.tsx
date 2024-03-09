@@ -74,7 +74,7 @@ const TaskEdit = ({
               type="text"
               id="title"
               name="title"
-              value={updateTask.title}
+              value={updateTask?.title}
               onChange={(e) => handleChange(e)}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500 text-black"
             />
@@ -89,7 +89,7 @@ const TaskEdit = ({
             <textarea
               id="Description"
               name="Description"
-              value={updateTask.Description}
+              value={updateTask?.Description}
               onChange={(e) => handleChange(e)}
               rows={3}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500 text-black"
@@ -106,7 +106,7 @@ const TaskEdit = ({
               type="text"
               id="status"
               name="status"
-              value={updateTask.status}
+              value={updateTask?.status}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500 text-black"
             />
@@ -122,7 +122,7 @@ const TaskEdit = ({
               type="date"
               id="dueDate"
               name="dueDate"
-              value={dayjs(updateTask.dueDate).format("YYYY-MM-DD")}
+              value={dayjs(updateTask?.dueDate).format("YYYY-MM-DD")}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
             />
