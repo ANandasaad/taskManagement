@@ -36,7 +36,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
 
       dispatch(addTask(response?.data));
       onState(false);
-      // location.reload();
+      location.reload();
     } catch (error) {
       console.log(error);
     }
