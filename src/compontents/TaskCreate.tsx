@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../utils/taskSlice";
+
 const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
   const dispatch = useDispatch();
   const [task, setTask] = useState({

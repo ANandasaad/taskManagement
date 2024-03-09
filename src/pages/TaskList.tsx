@@ -30,7 +30,6 @@ const TaskList = () => {
     setCreateTask(newSate);
   };
   const handleDelete = async (id: string) => {
-    console.log(id);
     await axios
       .delete(
         "https://backendapitask.onrender.com/api/v1/task/delete-task/" + id
