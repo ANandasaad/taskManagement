@@ -64,7 +64,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
               id="title"
               name="title"
               placeholder="Task Name"
-              value={task.title}
+              value={task?.title}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
             />
@@ -80,7 +80,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
               id="Description"
               name="Description"
               placeholder="Description"
-              value={task.Description}
+              value={task?.Description}
               onChange={handleChange}
               rows={3}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
@@ -98,7 +98,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
               id="status"
               name="status"
               placeholder="status type"
-              value={task.status}
+              value={task?.status}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
             />
@@ -115,7 +115,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
               id="dueDate"
               name="dueDate"
               placeholder="date"
-              value={task.dueDate}
+              value={task?.dueDate}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
             />
