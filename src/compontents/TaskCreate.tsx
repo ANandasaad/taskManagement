@@ -10,7 +10,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
     status: "",
     dueDate: "",
   });
-  console.log(task);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

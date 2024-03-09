@@ -14,7 +14,7 @@ const TaskEdit = ({
     status: "",
     dueDate: " ",
   });
-  console.log(dayjs(updateTask.dueDate).format("YYYY-MM-DD"));
+
   const getData = async (Id: string) => {
     try {
       await axios

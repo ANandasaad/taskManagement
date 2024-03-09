@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TaskModal from "../compontents/TaskEdit";
+import TaskEdit from "../compontents/TaskEdit";
 import useTask from "../hooks/useTask";
 import { useSelector } from "react-redux";
 import { RootState } from "../utils/appStore";
@@ -77,7 +77,7 @@ const TaskList = () => {
         <tbody>
           {taskData?.map((task) =>
             task?.id === Id ? (
-              isEdit && <TaskModal onState={handleChildEdit} Id={Id} />
+              isEdit && <TaskEdit onState={handleChildEdit} Id={Id} />
             ) : (
               <tr
                 key={task.id}
