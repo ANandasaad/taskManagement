@@ -1,6 +1,7 @@
 import useTask from "../hooks/useTask";
 import { useSelector } from "react-redux";
 import { RootState } from "../utils/appStore";
+import Loading from "../compontents/Loading";
 
 const TaskBoard = () => {
   useTask();
@@ -25,29 +26,33 @@ const TaskBoard = () => {
             </th>
           </tr>
         </thead>
-        <tbody>
-          {taskData?.map((task) => (
-            <tr
-              key={task.id}
-              className="bg-white border-b  dark:border-gray-700 text-black"
-            >
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+        {!taskData ? (
+          <Loading />
+        ) : (
+          <tbody>
+            {taskData?.map((task) => (
+              <tr
+                key={task.id}
+                className="bg-white border-b  dark:border-gray-700 text-black"
               >
-                {task.title}
-              </th>
-              <td className="px-6 py-4">{task.Description}</td>
-              <td className="px-6 py-4">{task.status}</td>
-              <td className="px-6 py-4">
-                {" "}
-                {new Date(task.dueDate).toLocaleDateString("en-GB", {
-                  timeZone: "UTC",
-                })}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                >
+                  {task.title}
+                </th>
+                <td className="px-6 py-4">{task.Description}</td>
+                <td className="px-6 py-4">{task.status}</td>
+                <td className="px-6 py-4">
+                  {" "}
+                  {new Date(task.dueDate).toLocaleDateString("en-GB", {
+                    timeZone: "UTC",
+                  })}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
       </table>
     </div>
   );

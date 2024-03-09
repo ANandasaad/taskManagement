@@ -6,6 +6,7 @@ import { RootState } from "../utils/appStore";
 import { IoAddCircleOutline } from "react-icons/io5";
 import TaskCreate from "../compontents/TaskCreate";
 import axios from "axios";
+import Loading from "../compontents/Loading";
 const TaskList = () => {
   const [Id, setId] = useState<string>("-1");
   const [createTask, setCreateTask] = useState<boolean>(false);
@@ -72,46 +73,50 @@ const TaskList = () => {
             </th>
           </tr>
         </thead>
-        <tbody>
-          {taskData?.map((task) =>
-            task?.id === Id ? (
-              isEdit && <TaskEdit onState={handleChildEdit} Id={Id} />
-            ) : (
-              <tr
-                key={task.id}
-                className="bg-white border-b  dark:border-gray-700 text-black"
-              >
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+        {!taskData ? (
+          <Loading />
+        ) : (
+          <tbody>
+            {taskData?.map((task) =>
+              task?.id === Id ? (
+                isEdit && <TaskEdit onState={handleChildEdit} Id={Id} />
+              ) : (
+                <tr
+                  key={task.id}
+                  className="bg-white border-b  dark:border-gray-700 text-black"
                 >
-                  {task?.title}
-                </th>
-                <td className="px-6 py-4">{task?.Description}</td>
-                <td className="px-6 py-4">{task?.status}</td>
-                <td className="px-6 py-4">
-                  {new Date(task.dueDate).toLocaleDateString("en-GB", {
-                    timeZone: "UTC",
-                  })}
-                </td>
-                <td className="px-6 py-4 flex gap-3">
-                  <button
-                    className="px-3 py-1 border rounded-lg hover:bg-gray-100"
-                    onClick={() => handleEdit(task?.id)}
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                   >
-                    Edit
-                  </button>
-                  <button
-                    className="px-3 py-1 border rounded-lg hover:bg-gray-100"
-                    onClick={() => handleDelete(task?.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            )
-          )}
-        </tbody>
+                    {task?.title}
+                  </th>
+                  <td className="px-6 py-4">{task?.Description}</td>
+                  <td className="px-6 py-4">{task?.status}</td>
+                  <td className="px-6 py-4">
+                    {new Date(task.dueDate).toLocaleDateString("en-GB", {
+                      timeZone: "UTC",
+                    })}
+                  </td>
+                  <td className="px-6 py-4 flex gap-3">
+                    <button
+                      className="px-3 py-1 border rounded-lg hover:bg-gray-100"
+                      onClick={() => handleEdit(task?.id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="px-3 py-1 border rounded-lg hover:bg-gray-100"
+                      onClick={() => handleDelete(task?.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        )}
       </table>
     </div>
   );
