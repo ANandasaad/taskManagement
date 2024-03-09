@@ -26,7 +26,9 @@ const TaskEdit = ({
     }
   };
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setUpdateTask((prevState) => ({
@@ -102,14 +104,18 @@ const TaskEdit = ({
             >
               Status
             </label>
-            <input
-              type="text"
+            <select
               id="status"
               name="status"
               value={updateTask?.status}
-              onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500 text-black"
-            />
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                handleChange(e)
+              }
+              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+            >
+              <option value="pending">pending</option>
+              <option value="completed">completed</option>
+            </select>
           </div>
           <div>
             <label

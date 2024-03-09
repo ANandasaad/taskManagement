@@ -12,7 +12,9 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setTask((prevState) => ({
@@ -93,15 +95,17 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
             >
               Status
             </label>
-            <input
-              type="text"
+
+            <select
               id="status"
               name="status"
-              placeholder="status type"
               value={task?.status}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
-            />
+            >
+              <option value="pending">pending</option>
+              <option value="completed">completed</option>
+            </select>
           </div>
           <div>
             <label
