@@ -7,20 +7,20 @@ import { getTasks } from "../utils/taskSlice";
 const generateTaskData = async (dispatch: Dispatch<UnknownAction>) => {
   try {
     await axios
-      .get("http://localhost:3000/task")
-      .then((res) => dispatch(getTasks(res.data)))
+      .get("https://backendapitask.onrender.com/api/v1/task/get-all-tasks")
+      .then((res) => dispatch(getTasks(res?.data?.data)))
       .catch((err) => console.log(err));
   } catch (error) {
     console.log("Error fetching now playing movies:", error);
   }
 };
 const useTask = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const taskData = useSelector((state: RootState) => state.task.getTasks); // Specify RootState as the type for state
-    useEffect(() => {
-        !taskData && generateTaskData(dispatch);
-    }, [dispatch, taskData]); // Include 'dispatch' and 'taskData' in the dependency array
+  const taskData = useSelector((state: RootState) => state.task.getTasks); // Specify RootState as the type for state
+  useEffect(() => {
+    !taskData && generateTaskData(dispatch);
+  }, [dispatch, taskData]); // Include 'dispatch' and 'taskData' in the dependency array
 };
 
 export default useTask;

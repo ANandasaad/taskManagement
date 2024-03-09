@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskModal from "../compontents/TaskEdit";
 import useTask from "../hooks/useTask";
 import { useSelector } from "react-redux";
@@ -32,13 +32,14 @@ const TaskList = () => {
   const handleDelete = async (id: string) => {
     console.log(id);
     await axios
-      .delete("http://localhost:3000/task/" + id)
+      .delete("http://localhost:8080/api/v1/task/delete-task/" + id)
       .then((res) => {
         console.log(res.data);
         location.reload();
       })
       .catch((error) => console.log(error));
   };
+
   return (
     <div className="relative  ">
       <button
@@ -88,7 +89,11 @@ const TaskList = () => {
                 </th>
                 <td className="px-6 py-4">{task.Description}</td>
                 <td className="px-6 py-4">{task.status}</td>
-                <td className="px-6 py-4">{task.dueDate}</td>
+                <td className="px-6 py-4">
+                  {new Date(task.dueDate).toLocaleDateString("en-GB", {
+                    timeZone: "UTC",
+                  })}
+                </td>
                 <td className="px-6 py-4 flex gap-3">
                   <button
                     className="px-3 py-1 border rounded-lg hover:bg-gray-100"

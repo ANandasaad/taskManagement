@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import dayjs from "dayjs";
 const TaskEdit = ({
   onState,
   Id,
@@ -14,11 +14,12 @@ const TaskEdit = ({
     status: "",
     dueDate: " ",
   });
+  console.log(dayjs(updateTask.dueDate).format("YYYY-MM-DD"));
   const getData = async (Id: string) => {
     try {
       await axios
-        .get("http://localhost:3000/task/" + Id)
-        .then((res) => setUpdateTask(res.data))
+        .get("https://backendapitask.onrender.com/api/v1/task/get-task/" + Id)
+        .then((res) => setUpdateTask(res.data?.data))
         .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
@@ -37,13 +38,15 @@ const TaskEdit = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .put("http://localhost:3000/task/" + Id, updateTask)
+      .put(
+        "https://backendapitask.onrender.com/api/v1/task/update-task/" + Id,
+        updateTask
+      )
       .then(() => {
         onState(false, "-1");
+        location.reload();
       })
       .catch((err) => console.log(err));
-
-    location.reload();
   };
 
   const handleBack = () => {
@@ -73,7 +76,7 @@ const TaskEdit = ({
               name="title"
               value={updateTask.title}
               onChange={(e) => handleChange(e)}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500 text-black"
             />
           </div>
           <div>
@@ -89,7 +92,7 @@ const TaskEdit = ({
               value={updateTask.Description}
               onChange={(e) => handleChange(e)}
               rows={3}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500 text-black"
             ></textarea>
           </div>
           <div>
@@ -105,7 +108,7 @@ const TaskEdit = ({
               name="status"
               value={updateTask.status}
               onChange={handleChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500 text-black"
             />
           </div>
           <div>
@@ -119,7 +122,7 @@ const TaskEdit = ({
               type="date"
               id="dueDate"
               name="dueDate"
-              value={updateTask.dueDate}
+              value={dayjs(updateTask.dueDate).format("YYYY-MM-DD")}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
             />

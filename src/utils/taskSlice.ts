@@ -26,13 +26,16 @@ export const taskSlice = createSlice({
     addTask: (state, action: PayloadAction<Task>) => {
       state.addTask.push(action.payload);
     },
-    updateTask: () => {},
+    updateTaskById: (state, action: PayloadAction<Task>) => {
+      console.log(action.payload, "update");
+      state.updateTask.push(action.payload);
+    },
     getTasks: (state, action: PayloadAction<Task[]>) => {
       state.getTasks = action.payload;
     },
   },
 });
 
-export const { addTask, updateTask, getTasks } = taskSlice.actions;
+export const { addTask, updateTaskById, getTasks } = taskSlice.actions;
 
 export default taskSlice.reducer;

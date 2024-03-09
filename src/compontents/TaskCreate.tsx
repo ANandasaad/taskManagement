@@ -10,7 +10,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
     status: "",
     dueDate: "",
   });
-
+  console.log(task);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -24,12 +24,15 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      const response = await axios.post("http://localhost:3000/task", {
-        title: task.title,
-        Description: task.Description,
-        status: task.status,
-        dueDate: task.dueDate,
-      });
+      const response = await axios.post(
+        "https://backendapitask.onrender.com/api/v1/task/create",
+        {
+          title: task.title,
+          Description: task.Description,
+          status: task.status ? task.status : "pending",
+          dueDate: task.dueDate,
+        }
+      );
       console.log(response.data);
       dispatch(addTask(response.data));
       onState(false);
@@ -60,6 +63,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
               type="text"
               id="title"
               name="title"
+              placeholder="Task Name"
               value={task.title}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
@@ -75,6 +79,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
             <textarea
               id="Description"
               name="Description"
+              placeholder="Description"
               value={task.Description}
               onChange={handleChange}
               rows={3}
@@ -92,6 +97,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
               type="text"
               id="status"
               name="status"
+              placeholder="status type"
               value={task.status}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
@@ -108,6 +114,7 @@ const TaskCreate = ({ onState }: { onState: (state: boolean) => void }) => {
               type="date"
               id="dueDate"
               name="dueDate"
+              placeholder="date"
               value={task.dueDate}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"

@@ -39,7 +39,12 @@ const TaskBoard = () => {
               </th>
               <td className="px-6 py-4">{task.Description}</td>
               <td className="px-6 py-4">{task.status}</td>
-              <td className="px-6 py-4">{task.dueDate}</td>
+              <td className="px-6 py-4">
+                {" "}
+                {new Date(task.dueDate).toLocaleDateString("en-GB", {
+                  timeZone: "UTC",
+                })}
+              </td>
             </tr>
           ))}
         </tbody>
