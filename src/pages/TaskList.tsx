@@ -76,7 +76,7 @@ const TaskList = () => {
         </thead>
         <tbody>
           {taskData?.map((task) =>
-            task.id === Id ? (
+            task?.id === Id ? (
               isEdit && <TaskModal onState={handleChildEdit} Id={Id} />
             ) : (
               <tr
@@ -87,10 +87,10 @@ const TaskList = () => {
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                 >
-                  {task.title}
+                  {task?.title}
                 </th>
-                <td className="px-6 py-4">{task.Description}</td>
-                <td className="px-6 py-4">{task.status}</td>
+                <td className="px-6 py-4">{task?.Description}</td>
+                <td className="px-6 py-4">{task?.status}</td>
                 <td className="px-6 py-4">
                   {new Date(task.dueDate).toLocaleDateString("en-GB", {
                     timeZone: "UTC",
@@ -99,13 +99,13 @@ const TaskList = () => {
                 <td className="px-6 py-4 flex gap-3">
                   <button
                     className="px-3 py-1 border rounded-lg hover:bg-gray-100"
-                    onClick={() => handleEdit(task.id)}
+                    onClick={() => handleEdit(task?.id)}
                   >
                     Edit
                   </button>
                   <button
                     className="px-3 py-1 border rounded-lg hover:bg-gray-100"
-                    onClick={() => handleDelete(task.id)}
+                    onClick={() => handleDelete(task?.id)}
                   >
                     Delete
                   </button>
